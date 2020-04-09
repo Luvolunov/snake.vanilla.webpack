@@ -1,4 +1,13 @@
 export class CanvasController{
+
+    get mainValue(){
+        return window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth;
+    }
+
+    get percent(){
+        return this.mainValue / 100;
+    }
+
     constructor(canvas){
         this.canvas = canvas;
         this.context = canvas.getContext("2d");
@@ -6,16 +15,10 @@ export class CanvasController{
     }
 
     normalize(){
-        this.calculateMetrics();
         this.canvas.setAttribute("width", this.mainValue);
         this.canvas.setAttribute("height", this.mainValue);
     }
 
-    calculateMetrics(){
-        this.mainValue = window.innerWidth > window.innerHeight ?  
-                            window.innerHeight : window.innerWidth;
-        this.percent = this.mainValue / 100;
-    }
 
     drawLine(coords){
         for (const propName in coords){
