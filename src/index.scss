@@ -4,10 +4,16 @@ body {
     font-family: Arial, Calibri, sans-serif, sans;
 }
 
-.canvas{
-    display: block;
+.canvas-outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100vh;
+}
+
+.canvas{
+    background-color: pink;
 }
 
 .panel{
@@ -15,7 +21,7 @@ body {
 }
 
 @media screen and (max-width: 600px){
-    .canvas{
+    .canvas-outer{
         height: 90vh;
     }
     .panel{
