@@ -1,7 +1,7 @@
 export class CanvasController{
 
     get mainValue(){
-        return window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth;
+        return Math.min(document.documentElement.clientHeight, document.documentElement.clientWidth);
     }
 
     get percent(){
@@ -18,7 +18,6 @@ export class CanvasController{
         this.canvas.setAttribute("width", this.mainValue);
         this.canvas.setAttribute("height", this.mainValue);
     }
-
 
     drawLine({x1, y1, x2, y2}){
         x1 *= this.percent;
@@ -41,9 +40,13 @@ export class CanvasController{
             this.context.fillStyle = color;
             this.context.fillRect(x, y, width, height);
         } 
-        
+
         this.context.strokeRect(x, y, width, height);
         this.context.stroke();
         
+    }
+
+    get isFullscreen(){
+        return document.fullscreenElement === this.canvas;
     }
 }
