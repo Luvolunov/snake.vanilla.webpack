@@ -20,23 +20,30 @@ export class CanvasController{
     }
 
 
-    drawLine(coords){
-        for (const propName in coords){
-            coords[propName] *= this.percent;
-        }
-        const {x1, y1, x2, y2} = coords;
+    drawLine({x1, y1, x2, y2}){
+        x1 *= this.percent;
+        y1 *= this.percent;
+        x2 *= this.percent;
+        y2 *= this.percent;
 
         this.context.moveTo(x1, y1);
         this.context.lineTo(x2, y2);
         this.context.stroke();
     }
 
-    drawRect(metrics){
-        for (const propName in metrics){
-            metrics[propName] *= this.percent;
-        }
-        const {x, y, width, height} = metrics;
+    drawRect({x, y, width, height, color}){
+        x *= this.percent;
+        y *= this.percent;
+        width *= this.percent;
+        height *= this.percent;
+
+        if (color){
+            this.context.fillStyle = color;
+            this.context.fillRect(x, y, width, height);
+        } 
+        
         this.context.strokeRect(x, y, width, height);
         this.context.stroke();
+        
     }
 }
