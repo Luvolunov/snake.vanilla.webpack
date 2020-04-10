@@ -1,7 +1,6 @@
-export class TouchInput{
-    constructor(el){
-        this.element = el;
-    }
+import { Input } from "./input";
+
+export class TouchInput extends Input{
     onSwipe(cb){
         const self = this;
         let downTouch = null,
