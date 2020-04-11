@@ -5,6 +5,11 @@ export class SnakeController{
         this.direction = 1;
     }
 
+    reset(){
+        this.chunks = [{x: 1, y: 0, color: "red"}, {x: 0, y: 0, color: "#43D134"}];
+        this.direction = 1;
+    }
+
     addChunk(){
         const chunk = {};
         const lastChunk = this.chunks[this.chunks.length - 1];
@@ -38,6 +43,17 @@ export class SnakeController{
         } else {
             chunk.y += this.direction === 2 ? 1: this.direction === 0 ? -1: 0;
         }
+
+        if (this.onStep){
+            this.onStep(this.chunks[0]);
+        }
+        
+        if (!!this.chunks.slice(1).find(c => c.x === chunk.x && c.y === chunk.y)){
+            if (this.onDie){
+                this.onDie();
+            }
+        }
+
     }
 
     setDirection(num){
@@ -48,4 +64,8 @@ export class SnakeController{
             (this.direction === 3 && num === 1)) return;
         this.direction = num;
     }
+
+    onStep(firstChunk){}  // hook
+
+    onDie(){}   // hook
 }
