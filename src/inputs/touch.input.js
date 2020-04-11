@@ -21,7 +21,9 @@ export class TouchInput extends Input{
             function onEnd(){
                 self.element.removeEventListener("touchend", onEnd);
                 self.element.removeEventListener("touchmove", onMove);
-                cb(downTouch, upTouch);
+                if (upTouch){
+                    cb(downTouch, upTouch);
+                }  
             }
         });
     }
