@@ -1,7 +1,7 @@
 export class SnakeController{
     constructor(threshold){
         this.threshold = threshold;
-        this.chunks = [{x: 1, y: 0}, {x: 0, y: 0}];
+        this.chunks = [{x: 1, y: 0, color: "red"}, {x: 0, y: 0, color: "#43D134"}];
         this.direction = 1;
     }
 
@@ -10,6 +10,7 @@ export class SnakeController{
         const lastChunk = this.chunks[this.chunks.length - 1];
         chunk.x = lastChunk.x;
         chunk.y = lastChunk.y;
+        chunk.color = "#43D134";
         this.chunks.push(chunk);
     }
 
