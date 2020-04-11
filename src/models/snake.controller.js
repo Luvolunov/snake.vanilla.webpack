@@ -1,6 +1,5 @@
 export class SnakeController{
-    constructor(threshold){
-        this.threshold = threshold;
+    constructor(){
         this.chunks = [{x: 1, y: 0, color: "red"}, {x: 0, y: 0, color: "#43D134"}];
         this.direction = 1;
     }
@@ -63,6 +62,10 @@ export class SnakeController{
             (this.direction === 1 && num === 3) ||
             (this.direction === 3 && num === 1)) return;
         this.direction = num;
+    }
+
+    setThreshold(num){
+        this.threshold = num;
     }
 
     onStep(firstChunk){}  // hook
